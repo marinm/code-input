@@ -60,7 +60,7 @@
                 flex-grow: 1;
                 height: 1rem;
                 padding-bottom: 0.1rem;
-				text-align: center;
+                text-align: center;
             }
 
             .digit.focus {
@@ -103,9 +103,9 @@
             <div class="digit" data-position="2"></div>
             <div class="digit" data-position="3"></div>
             <div class="digit" data-position="4"></div>
+            <div class="digit" data-position="5"></div>
             <div class="digit" data-position="6"></div>
             <div class="digit" data-position="7"></div>
-            <div class="digit" data-position="8"></div>
         </div>
         <div class="keypad">
             <button class="keypad-btn" data-value="0">0</button>
@@ -121,7 +121,7 @@
         </div>
 
         <script>
-			const codeLength = 8;
+            const codeLength = 8;
 
             const code = new Array(codeLength);
             let focusPosition = 0;
@@ -134,7 +134,7 @@
                 });
 
                 const focusDigit = Array.from(digits).find(
-                    (el) => el.dataset.position == focusPosition
+                    (el) => el.dataset.position == String(focusPosition)
                 );
 
                 focusDigit.classList.add("focus");
@@ -154,21 +154,26 @@
 
             document.querySelectorAll(".digit").forEach((element) => {
                 element.addEventListener("click", (event) => {
-                    focusPosition = event.target.dataset.position;
-					renderFocus();
+                    focusPosition = Number(event.target.dataset.position);
+                    renderFocus();
                 });
             });
 
             document.querySelectorAll(".keypad-btn").forEach((element) => {
                 element.addEventListener("click", (event) => {
                     code[focusPosition] = event.target.dataset.value;
-					focusPosition = (focusPosition + 1) % codeLength;
+
+                    focusPosition =
+                        focusPosition < codeLength - 1
+                            ? focusPosition + 1
+                            : focusPosition;
+
                     renderCode();
-					renderFocus();
+                    renderFocus();
                 });
             });
 
-			renderFocus();
+            renderFocus();
         </script>
     </body>
 </html>
