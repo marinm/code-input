@@ -29,10 +29,10 @@
                 margin: 0;
                 background-color: #a8c64e;
                 display: flex;
-				flex-direction: column;
+                flex-direction: column;
                 justify-content: center;
                 align-items: center;
-				gap: 1rem;
+                gap: 2rem;
                 height: 100dvh;
                 font-weight: 400;
                 font-style: normal;
@@ -40,13 +40,31 @@
                 box-sizing: border-box;
                 user-select: none;
                 -webkit-user-select: none;
-				touch-action: manipulation;
+                touch-action: manipulation;
             }
 
-			.code {
-				width: 100%;
+            #code {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 0.3rem;
+            }
+
+            .digit {
+                border-bottom: 0.1rem solid black;
+                font-size: 1rem;
+                line-height: 1rem;
+                flex-grow: 1;
+                height: 1rem;
+                padding-bottom: 0.1rem;
 				text-align: center;
-			}
+            }
+
+            .digit.focus {
+                background-color: black !important;
+                color: white !important;
+            }
 
             .keypad {
                 display: grid;
@@ -75,7 +93,16 @@
         </style>
     </head>
     <body>
-        <div id="code"></div>
+        <div id="code">
+            <div class="digit" data-position="0"></div>
+            <div class="digit" data-position="1"></div>
+            <div class="digit" data-position="2"></div>
+            <div class="digit" data-position="3"></div>
+            <div class="digit" data-position="4"></div>
+            <div class="digit" data-position="6"></div>
+            <div class="digit" data-position="7"></div>
+            <div class="digit" data-position="8"></div>
+        </div>
         <div class="keypad">
             <button class="keypad-btn" data-value="0">0</button>
             <button class="keypad-btn" data-value="1">1</button>
@@ -90,19 +117,54 @@
         </div>
 
         <script>
-			const code = [];
+			const codeLength = 8;
 
-			function renderCode() {
-				document.querySelector("#code").innerText = code.join(" ");
-			}
+            const code = new Array(codeLength);
+            let focusPosition = 0;
+
+            function renderFocus() {
+                const digits = document.querySelectorAll(".digit");
+
+                digits.forEach((element) => {
+                    element.classList.remove("focus");
+                });
+
+                const focusDigit = Array.from(digits).find(
+                    (el) => el.dataset.position == focusPosition
+                );
+
+                focusDigit.classList.add("focus");
+            }
+
+            function renderCode() {
+                code.forEach((value, index) => {
+                    const digit = document.querySelector(
+                        `.digit[data-position="${index}"]`
+                    );
+
+                    if (digit) {
+                        digit.innerHTML = value;
+                    }
+                });
+            }
+
+            document.querySelectorAll(".digit").forEach((element) => {
+                element.addEventListener("click", (event) => {
+                    focusPosition = event.target.dataset.position;
+					renderFocus();
+                });
+            });
 
             document.querySelectorAll(".keypad-btn").forEach((element) => {
-				element.addEventListener("click", (event) => {
-					const value = event.target.dataset.value;
-					code.push(value);
-					renderCode();
-				});
-			});
+                element.addEventListener("click", (event) => {
+                    code[focusPosition] = event.target.dataset.value;
+					focusPosition = (focusPosition + 1) % codeLength;
+                    renderCode();
+					renderFocus();
+                });
+            });
+
+			renderFocus();
         </script>
     </body>
 </html>
