@@ -20,18 +20,21 @@
             }
 
             body {
-                padding: 10mm;
+				font-size: 1rem;
+                padding: 1rem;
                 margin: 0;
                 background-color: #a8c64e;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+				max-width: 100%;
+				max-height: 100%;
                 width: 100dvw;
                 height: 100dvh;
-                font-size: 10mm;
                 font-weight: 400;
                 font-style: normal;
                 overflow: hidden;
+				box-sizing: border-box;
                 user-select: none;
                 -webkit-user-select: none;
             }
@@ -41,7 +44,7 @@
 				grid-template-columns: repeat(5, 1fr);
 				grid-template-rows: 1fr 1fr;
 				width: 100%;
-				gap: 2mm;
+				gap: 1rem;
             }
 
             .keypad-btn {
