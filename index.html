@@ -12,22 +12,24 @@
             rel="stylesheet"
         />
         <style>
+            html {
+                font-size: min(7vw, 10mm);
+                --bg-color: #a8c64e;
+                --fg-color: #3c412c;
+            }
+
             * {
                 box-sizing: border-box;
                 font-family: "VT323";
-                color: #3c412c;
-                border-color: #3c412c;
-            }
-
-            html {
-                font-size: min(7vw, 10mm);
+                color: var(--fg-color);
+                border-color: var(--fg-color);
             }
 
             body {
                 font-size: 1rem;
                 padding: 5vw;
                 margin: 0;
-                background-color: #a8c64e;
+                background-color: var(--bg-color);
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -52,7 +54,7 @@
             }
 
             .digit {
-                border-bottom: 0.1rem solid black;
+                border-bottom: 0.1rem solid var(--fg-color);
                 font-size: 1rem;
                 line-height: 1rem;
                 flex-grow: 1;
@@ -62,8 +64,8 @@
             }
 
             .digit.focus {
-                background-color: black !important;
-                color: white !important;
+                background-color: var(--fg-color);
+                color: var(--bg-color);
             }
 
             .keypad {
