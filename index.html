@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Code Input</title>
-		<link rel="manifest" href="manifest.json" />
+        <link rel="manifest" href="manifest.json" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -12,26 +12,65 @@
             rel="stylesheet"
         />
         <style>
-            body {
-				padding: 0;
-				margin: 0;
-                background-color: #a8c64e;
+            * {
+                box-sizing: border-box;
+                font-family: "VT323";
                 color: #3c412c;
+                border-color: #3c412c;
+            }
+
+            body {
+                padding: 0;
+                margin: 0;
+                background-color: #a8c64e;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 width: 100dvw;
                 height: 100dvh;
                 font-size: 10mm;
-				font-family: "VT323", serif;
                 font-weight: 400;
                 font-style: normal;
-				overflow: hidden;
-				user-select: none;
-				-webkit-user-select: none;
+                overflow: hidden;
+                user-select: none;
+                -webkit-user-select: none;
+            }
+
+            .keypad {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 3mm;
+                width: 100%;
+                max-width: 15cm;
+            }
+
+            .keypad-btn {
+                background-color: transparent;
+                font-size: 10mm;
+                border-radius: 1mm;
+                border-width: 2px 2px 4px 2px;
+                flex-grow: 1;
+                aspect-ratio: 1;
+            }
+
+            .keypad-btn:active {
+                border-width: 4px 2px 2px 2px;
             }
         </style>
     </head>
-    <body class="font-VT323">
+    <body>
+        <div class="keypad">
+            <button class="keypad-btn">0</button>
+            <button class="keypad-btn">1</button>
+            <button class="keypad-btn">2</button>
+            <button class="keypad-btn">3</button>
+            <button class="keypad-btn">4</button>
+            <button class="keypad-btn">5</button>
+            <button class="keypad-btn">6</button>
+            <button class="keypad-btn">7</button>
+            <button class="keypad-btn">8</button>
+            <button class="keypad-btn">9</button>
+        </div>
     </body>
 </html>
