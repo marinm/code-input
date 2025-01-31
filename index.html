@@ -19,12 +19,12 @@
                 border-color: #3c412c;
             }
 
-			html {
-				font-size: min(7vw, 10mm);
-			}
+            html {
+                font-size: min(7vw, 10mm);
+            }
 
             body {
-				font-size: 1rem;
+                font-size: 1rem;
                 padding: 5vw;
                 margin: 0;
                 background-color: #a8c64e;
@@ -35,19 +35,19 @@
                 font-weight: 400;
                 font-style: normal;
                 overflow: hidden;
-				box-sizing: border-box;
+                box-sizing: border-box;
                 user-select: none;
                 -webkit-user-select: none;
             }
 
             .keypad {
                 display: grid;
-				grid-template-columns: repeat(5, 1fr);
-				grid-template-rows: 1fr 1fr;
-				gap: 0.3rem;
-				overflow: hidden;
-				width: 100%;
-				max-width: 10cm;
+                grid-template-columns: repeat(5, 1fr);
+                grid-template-rows: 1fr 1fr;
+                gap: 0.3rem;
+                overflow: hidden;
+                width: 100%;
+                max-width: 10cm;
             }
 
             .keypad-btn {
@@ -56,28 +56,38 @@
                 border-radius: 0.2rem;
                 border-width: 0.1rem 0.1rem 0.2rem 0.1rem;
                 aspect-ratio: 1;
-				padding: 0;
-				margin: 0;
+                padding: 0;
+                margin: 0;
             }
 
             .keypad-btn:active,
-			.keypad-btn:target {
+            .keypad-btn:target {
                 border-width: 0.2rem 0.1rem 0.1rem 0.1rem;
             }
         </style>
     </head>
     <body>
+        <div class="code"></div>
         <div class="keypad">
-            <button class="keypad-btn">0</button>
-            <button class="keypad-btn">1</button>
-            <button class="keypad-btn">2</button>
-            <button class="keypad-btn">3</button>
-            <button class="keypad-btn">4</button>
-            <button class="keypad-btn">5</button>
-            <button class="keypad-btn">6</button>
-            <button class="keypad-btn">7</button>
-            <button class="keypad-btn">8</button>
-            <button class="keypad-btn">9</button>
+            <button class="keypad-btn" data-value="0">0</button>
+            <button class="keypad-btn" data-value="1">1</button>
+            <button class="keypad-btn" data-value="2">2</button>
+            <button class="keypad-btn" data-value="3">3</button>
+            <button class="keypad-btn" data-value="4">4</button>
+            <button class="keypad-btn" data-value="5">5</button>
+            <button class="keypad-btn" data-value="6">6</button>
+            <button class="keypad-btn" data-value="7">7</button>
+            <button class="keypad-btn" data-value="8">8</button>
+            <button class="keypad-btn" data-value="9">9</button>
         </div>
+
+        <script>
+            document.querySelectorAll(".keypad-btn").forEach((element) => {
+				element.addEventListener("click", (event) => {
+					const value = event.target.dataset.value;
+					console.log(value);
+				});
+			});
+        </script>
     </body>
 </html>
